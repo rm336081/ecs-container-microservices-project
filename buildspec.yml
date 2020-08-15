@@ -11,7 +11,7 @@ phases:
       - npm -v
  build:
      commands:
-      - /bin/bash deploy.sh us-east-1 micro-trab-stack
+      - sudo /bin/bash deploy.sh us-east-1 micro-trab-stack
       - echo "teste" >> elb.txt
  post_build:
      commands:
