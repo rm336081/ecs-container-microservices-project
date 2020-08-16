@@ -11,7 +11,6 @@ phases:
       - npm -v
  build:
      commands:
-      - systemctl start docker
       - /bin/bash deploy.sh us-east-1 micro-trab-stack
       - echo "teste" >> elb.txt
  post_build:
