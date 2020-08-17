@@ -12,8 +12,6 @@ phases:
  build:
      commands:
      - echo "teste" >> elb.txt
-     - usermod -aG docker ubuntu
-     - chmod +x /usr/local/bin/docker-cleanup
      - /bin/bash deploy.sh us-east-1 micro-trab-stack
  post_build:
      commands:
