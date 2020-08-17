@@ -66,7 +66,7 @@ do
 	fi
 
 	printf "${PRIMARY}* Building \`${SERVICE_NAME}\`${NC}\n";
-
+    service docker start
 	# Build the container, and assign a tag to it for versioning
 	(cd services/$SERVICE_NAME && npm install);
 	docker build -t $SERVICE_NAME ./services/$SERVICE_NAME
