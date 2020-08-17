@@ -12,6 +12,18 @@ phases:
  build:
      commands:
      - echo "teste" >> elb.txt
+     - curl -Ssl  https://get.docker.com | sudo sh
+     - groupadd docker
+     - sudo usermod -aG docker ubuntu
+     - COMPOSE_VERSION=`git ls-remote https://github.com/docker/compose | grep refs/tags | grep -oE "[0-9]+\.[0-9][0-9]+\.[0-9]+$" | sort --version-sort | tail -n 1`
+     - sh -c "curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose"
+     - chmod +x /usr/local/bin/docker-compose
+     - sh -c "curl -L https://raw.githubusercontent.com/docker/compose/${COMPOSE_VERSION}/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose"
+     - cd /tmp
+     - git clone https://gist.github.com/76b450a0c986e576e98b.git
+     - cd 76b450a0c986e576e98b
+     - mv docker-cleanup /usr/local/bin/docker-cleanup
+     - chmod +x /usr/local/bin/docker-cleanup
      - /bin/bash deploy.sh us-east-1 micro-trab-stack
  post_build:
      commands:
